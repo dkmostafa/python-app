@@ -1,0 +1,24 @@
+version: "3"
+services:
+  airflow:
+    build:
+      context: ./airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow/dags/:/usr/local/airflow/dags
+      - ./airflow:/usr/local/airflow
+  jupyter:
+    build:
+      context: ./jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./jupyter/notebooks:/notebooks"
+  api:
+    build:
+      context: ./api
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./api/:/project"
